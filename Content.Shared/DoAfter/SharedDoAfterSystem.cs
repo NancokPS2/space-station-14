@@ -194,6 +194,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return false;
         }
 
+        //Used to track DoAfters and prevent duplication
         id = new DoAfterId(args.User, comp.NextId++);
         var doAfter = new DoAfter(id.Value.Index, args, GameTiming.CurTime);
 
@@ -203,6 +204,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         args.NetUser = GetNetEntity(args.User);
         args.NetEventTarget = GetNetEntity(args.EventTarget);
 
+        // Only update the UserPosition and TargetDistance if the position CAN break in the first place
+        // This just for the client after all.
         if (args.BreakOnMove)
             doAfter.UserPosition = Transform(args.User).Coordinates;
 

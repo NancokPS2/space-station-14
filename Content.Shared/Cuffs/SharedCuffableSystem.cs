@@ -528,7 +528,8 @@ namespace Content.Shared.Cuffs
                 BreakOnWeightlessMove = false,
                 BreakOnDamage = true,
                 NeedHand = true,
-                DistanceThreshold = 1f // shorter than default but still feels good
+                DistanceThreshold = 1f, // shorter than default but still feels good
+                AttemptFrequency = AttemptFrequency.EveryTick,
             };
 
             if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
